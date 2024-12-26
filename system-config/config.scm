@@ -117,14 +117,23 @@
                        (mount-point "/")
                        (device (file-system-label "guix"))
                        (type "btrfs")
-		       (options "subvol=/guix/root"))
+		       (options "subvol=/@"))
+		      
 		      (file-system
 		       (mount-point "/home")
 		       (device (file-system-label "guix"))
 		       (type "btrfs")
-		       (options "subvol=/guix/home"))
+		       (options "subvol=/@home"))
+		      
+		      (file-system
+		       (mount-point "/gnu")
+		       (device (file-system-label "guix"))
+		       (type "btrfs")
+		       (options "subvol=/@gnu"))
+		      
 		      (file-system
 		       (mount-point "/boot/efi")
 		       (device (file-system-label "GUIX-EFI"))
 		       (type "vfat"))
+		      
 		      %base-file-systems)))
