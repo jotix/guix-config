@@ -70,5 +70,5 @@ sudo mkdir -p /mnt/boot/efi
 
 # mount all in the right place
 sudo mount LABEL=guix /mnt/home -osubvol=/@home
-sudo mount LABEL=guix /mnt/nix -osubvol=/@nix
+sudo mount LABEL=guix /mnt/gnu -osubvol=/@gnu
 sudo mount LABEL=GUIX-EFI /mnt/boot/efi
