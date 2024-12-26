@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 
 echo
 lsblk -o +LABEL
@@ -70,6 +69,6 @@ sudo mkdir -p /mnt/gnu
 sudo mkdir -p /mnt/boot/efi
 
 # mount all in the right place
-sudo mount LABEL=NixOS /mnt/home -osubvol=/@home
-sudo mount LABEL=NixOS /mnt/nix -osubvol=/@nix
-sudo mount LABEL=NIXOS-BOOT /mnt/boot/efi
+sudo mount LABEL=guix /mnt/home -osubvol=/@home
+sudo mount LABEL=guix /mnt/nix -osubvol=/@nix
+sudo mount LABEL=GUIX-EFI /mnt/boot/efi
