@@ -48,15 +48,14 @@
  (packages (append (list
 		    git
 		    p7zip
-		    (specification->package "emacs")
-                    (specification->package "emacs-exwm")
-                    (specification->package "emacs-desktop-environment"))
+		    (specification->package "emacs"))
                    %base-packages))
 
  ;; Below is the list of system services.  To search for available
  ;; services, run 'guix system search KEYWORD' in a terminal.
  (services
   (cons* (service xfce-desktop-service-type)
+	 (service gnome-desktop-service-type)
          ;; To configure OpenSSH, pass an 'openssh-configuration'
          ;; record as a second argument to 'service' below.
          (service openssh-service-type)
