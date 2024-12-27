@@ -10,6 +10,7 @@
              (gnu packages)
              (gnu services)
              (guix gexp)
+	     (guix store)
 	     (gnu packages linux)
              (gnu home services shells)
 	     (gnu home services sound)
@@ -107,6 +108,8 @@
   (services
    (list (service home-bash-service-type
                   (home-bash-configuration
+		   (environment-variables '(("EDITOR" . "emacs -nw")
+					    ("VISUAL" . "emacs")))
                    (aliases '(("cdc" . "cd ~/guix-config")
                               ("exa" . "eza --icons")
                               ("grep" . "grep --color=auto")
@@ -117,9 +120,18 @@
                               ("ls" . "eza")
                               ("lt" . "eza --tree")
                               ("vi" . "nvim")
-                              ("vim" . "nvim")))
-                   (bashrc (list (local-file "./bash/.bashrc" "bashrc")))
-                   (bash-profile (list (local-file "./bash/.bash_profile" "bash_profile")))))
+                              ("vim" . "nvim")
+			      ("grep" . "grep --color=auto")
+			      ("ip" . "ip -color=auto")
+			      ("gitroot" . "cd $(git rev-parse --show-toplevel)")
+			      ("gr" . "gitroot")))
+		   (bashrc (list (plain-file "bashrc"
+					     "source /gnu/store/8d3hz2ydk1p69wh4glb7p5s29awpbp8s-liquidprompt-2.1.2/share/liquidprompt/liquidprompt
+					     #source /gnu/store/dzn7mlkkxwjpl6jj2f6lrk4bx2fji0nc-liquidprompt-2.1.2/share/liquidprompt/themes/powerline/powerline.theme
+					     neofetch")))
+                   ;; (bashrc (list (local-file "./bash/.bashrc" "bashrc")))
+                   ;; (bash-profile (list (local-file "./bash/.bash_profile" "bash_profile")))
+		   ))
 
 	 (service home-pipewire-service-type)
 	 (service home-dbus-service-type)
