@@ -96,8 +96,12 @@
 		      :slant 'italic))
 (jtx/set-font-faces)
 
-(set-frame-parameter (selected-frame) 'fullscreen 'maximized)
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
+;; start fullscreen
+;; (set-frame-parameter (selected-frame) 'fullscreen 'maximized)
+;; (add-to-list 'default-frame-alist '(fullscreen . maximized))
+
+;; frame-size
+(set-frame-size (selected-frame) 200 48)
 
 ;;----------------------- packages ---------------------------------------------
 
@@ -149,6 +153,13 @@
 (add-hook 'prog-mode-hook 'eglot-ensure)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 (setq python-shell-completion-native-disabled-interpreters '("python"))
+
+;; smart-hungry-delete
+(require 'smart-hungry-delete)
+(smart-hungry-delete-add-default-hooks)
+(global-set-key (kbd "<backspace>") 'smart-hungry-delete-backward-char)
+(global-set-key (kbd "<delete>") 'smart-hungry-delete-backward-char)
+(global-set-key (kbd "C-d") 'smart-hungry-delete-forward-char)
 
 ;;----------------------- org mode ---------------------------------------------
 
