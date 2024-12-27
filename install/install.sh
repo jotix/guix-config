@@ -72,3 +72,6 @@ sudo mkdir -p /mnt/boot/efi
 sudo mount LABEL=guix /mnt/home -osubvol=/@home
 sudo mount LABEL=guix /mnt/gnu -osubvol=/@gnu
 sudo mount LABEL=GUIX-EFI /mnt/boot/efi
+
+### installation
+guix time-machine -C ./channels.scm -- system init ../system-config.scm /mnt --substitute-urls='https://ci.guix.gnu.org https://bordeaux.guix.gnu.org https://substitutes.nonguix.org'

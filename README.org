@@ -1,0 +1,39 @@
+* Installing the system
+
+First we need to set up the Guix build daemon
+to target the new system partition by running
+this command:
+
+#+begin_src sh
+herd start cow-store /mnt
+#+end_src
+
+The following command will install your system configuration
+using the included channels.scm file so that you get both
+the main Guix channel and the Nonguix channel which contains
+the full Linux kernel:
+
+#+begin_src sh
+sudo guix archive --authorize < signing-key.pub
+guix time-machine -C ./channels.scm -- system init ./config.scm /mnt \
+     --substitute-urls='https://ci.guix.gnu.org https://bordeaux.guix.gnu.org https://substitutes.nonguix.org'
+#+end_src
+
+This command uses the channel defined in clannels.scm
+and the substitutes for nonguix alternatively run the script
+wich contains the last command
+#+begin_src sh
+./install
+#+end_src
+
+* Reconfiguring the system
+
+#+begin_src sh
+sudo guix system reconfigure ./config.scm
+#+end_src
+
+* Reconfiguring home environment
+
+#+begin_src sh
+guix home reconfigure ./config.scm
+#+end_src

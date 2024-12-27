@@ -30,6 +30,13 @@
     "ATTRS{serial}==\"*vial:f64c2b3c*\", MODE=\"0660\","
     "GROUP=\"users\", TAG+=\"uaccess\", TAG+=\"udev-acl\"")))
 
+(define %non-guix-public-key "
+(public-key 
+ (ecc 
+  (curve Ed25519)
+  (q #C1FD53E5D4CE971933EC50C9F307AE2171A2D3B52C804642A7A35F84F3A4EA98#)))
+")
+
 (operating-system
 
  ;; non-guix
@@ -78,7 +85,7 @@
 					       (append (list "https://substitutes.nonguix.org")
 						       %default-substitute-urls))
 					      (authorized-keys
-					       (append (list (local-file "./signing-key.pub"))
+					       (append (list (plain-file "non-guix.pub" %non-guix-public-key)
 						       %default-authorized-guix-keys))
 
 					      ;; add my-channels

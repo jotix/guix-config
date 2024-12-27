@@ -4,7 +4,7 @@
 ;; need to capture the channels being used, as returned by "guix describe".
 ;; See the "Replicating Guix" section in the manual.
 
-(load "./jtx-modules/fonts.scm")
+(load "./modules/fonts.scm")
 
 (use-modules (gnu home)
              (gnu packages)
@@ -75,6 +75,12 @@
    emacs-pinentry
    emacs-cfrs))
 
+(define %jtx/bashrc "
+source /gnu/store/8d3hz2ydk1p69wh4glb7p5s29awpbp8s-liquidprompt-2.1.2/share/liquidprompt/liquidprompt
+#source /gnu/store/dzn7mlkkxwjpl6jj2f6lrk4bx2fji0nc-liquidprompt-2.1.2/share/liquidprompt/themes/powerline/powerline.theme
+neofetch
+")
+
 (home-environment
   ;; Below is the list of packages that will show up in your
   ;; Home profile, under ~/.guix-home/profile.
@@ -99,7 +105,6 @@
 	   font-tamzen
 	   font-hack
 	   font-powerline
-	   xfce4-whiskermenu-plugin
 	   blueman)
 	  %jtx/emacs-packages))
 
@@ -125,13 +130,7 @@
 			      ("ip" . "ip -color=auto")
 			      ("gitroot" . "cd $(git rev-parse --show-toplevel)")
 			      ("gr" . "gitroot")))
-		   (bashrc (list (plain-file "bashrc"
-					     "source /gnu/store/8d3hz2ydk1p69wh4glb7p5s29awpbp8s-liquidprompt-2.1.2/share/liquidprompt/liquidprompt
-					     #source /gnu/store/dzn7mlkkxwjpl6jj2f6lrk4bx2fji0nc-liquidprompt-2.1.2/share/liquidprompt/themes/powerline/powerline.theme
-					     neofetch")))
-                   ;; (bashrc (list (local-file "./bash/.bashrc" "bashrc")))
-                   ;; (bash-profile (list (local-file "./bash/.bash_profile" "bash_profile")))
-		   ))
+		   (bashrc (list (plain-file "bashrc" %jtx/bashrc)))))
 
 	 (service home-pipewire-service-type)
 	 (service home-dbus-service-type)
