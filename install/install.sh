@@ -45,8 +45,8 @@ echo
 sudo parted $DISK mklabel gpt
 
 # make EFI & btrfs partitions
-sudo parted --align optimal -- $DISK mkpart GUIX-EFI fat32 1M 100M
-sudo parted --align optimal -- $DISK mkpart guix btrfs 100M 100%
+sudo parted $DISK mkpart GUIX-EFI fat32 1M 100M
+sudo parted $DISK mkpart guix btrfs 100M 100%
 
 # set esp flag in EFI partition
 sudo parted $DISK set 1 esp on
