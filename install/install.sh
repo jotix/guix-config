@@ -29,13 +29,6 @@ if [[ $CONTINUE != "yes" ]]; then
     exit
 fi
 
-echo 
-read -p "REALLY? (YES/NO): " CONTINUE
-if [[ $CONTINUE != "YES" ]]; then
-    echo "Aborting installation."
-    exit
-fi
-
 echo
 echo "Installing GNU-Guix in $DISK"
 echo "Host: $HOST"
