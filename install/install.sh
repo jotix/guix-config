@@ -74,4 +74,5 @@ sudo mount LABEL=guix /mnt/gnu -osubvol=/@gnu
 sudo mount LABEL=GUIX-EFI /mnt/boot/efi
 
 ### installation
+herd start cow-store /mnt
 guix time-machine -C ./channels.scm -- system init ../system-config.scm /mnt --substitute-urls='https://ci.guix.gnu.org https://bordeaux.guix.gnu.org https://substitutes.nonguix.org'
