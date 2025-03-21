@@ -85,8 +85,8 @@
 					       (append (list "https://substitutes.nonguix.org")
 						       %default-substitute-urls))
 					      (authorized-keys
-					       (append (list (plain-file "non-guix.pub" %non-guix-public-key)
-						       %default-authorized-guix-keys)))
+					       (append (list (plain-file "non-guix.pub" %non-guix-public-key))
+						       %default-authorized-guix-keys))
 
 					      ;; add my-channels
 					      (channels my-channels)
