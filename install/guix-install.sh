@@ -66,7 +66,12 @@ sudo mount LABEL=guix /mnt/home -osubvol=/@home
 sudo mount LABEL=guix /mnt/gnu -osubvol=/@gnu
 sudo mount LABEL=GUIX-EFI /mnt/boot/efi
 
+### get the config files
+wget https://raw.githubusercontent.com/jotix/guix-config/refs/heads/main/system-config.scm
+wget https://raw.githubusercontent.com/jotix/guix-config/refs/heads/main/install/channels.scm
+wget https://raw.githubusercontent.com/jotix/guix-config/refs/heads/main/install/signing-key.pub
+
 ### installation
 herd start cow-store /mnt
 sudo guix archive --authorize < signing-key.pub
-guix time-machine -C ./channels.scm -- system init ../system-config.scm /mnt --substitute-urls='https://ci.guix.gnu.org https://bordeaux.guix.gnu.org https://substitutes.nonguix.org'
+guix time-machine -C ./channels.scm -- system init ./system-config.scm /mnt --substitute-urls='https://ci.guix.gnu.org https://bordeaux.guix.gnu.org https://substitutes.nonguix.org'
