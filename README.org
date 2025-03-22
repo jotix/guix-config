@@ -6,7 +6,7 @@ In a disk with GPT partition type, create the following partitions:
 
 | PART | LABEL      | SIZE | FS TYPE | FLAG | SUBVOLUME | MOUNTPOINT |
 |------|------------|------|---------|------|-----------|------------|
-| 1    | GUIX-EFI   | 1GiB | fat32   | esp  | -         | -          |
+| 1    | GUIX-EFI   | 100M | fat32   | esp  | -         | -          |
 | 2    | guix       | 100% | btrfs   |      | @         | /          |
 |      |            |      |         |      | @nix      | /nix       |
 |      |            |      |         |      | @home     | /home      |
