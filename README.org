@@ -1,5 +1,16 @@
 * Installing the system
 
+Make the necesary disk preparations:
+
+In a disk with GPT partition type, create the following partitions:
+
+| PART | LABEL      | SIZE | FS TYPE | FLAG | SUBVOLUME | MOUNTPOINT |
+|------|------------|------|---------|------|-----------|------------|
+| 1    | GUIX-EFI   | 1GiB | fat32   | esp  | -         | -          |
+| 2    | guix       | 100% | btrfs   |      | @         | /          |
+|      |            |      |         |      | @nix      | /nix       |
+|      |            |      |         |      | @home     | /home      |
+
 First we need to set up the Guix build daemon
 to target the new system partition by running
 this command:
