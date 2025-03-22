@@ -7,6 +7,7 @@
 	     (gnu packages package-management)
 	     (gnu packages version-control)
 	     (gnu packages compression)
+	     (gnu packages xfce)
              (guix channels))
 
 (use-service-modules cups desktop networking ssh xorg virtualization)
@@ -55,6 +56,7 @@
  (packages (append (list
 		    git
 		    p7zip
+		    xfce4-whiskermenu-plugin
 		    (specification->package "emacs"))
                    %base-packages))
 
@@ -62,7 +64,7 @@
  ;; services, run 'guix system search KEYWORD' in a terminal.
  (services
   (cons* (service xfce-desktop-service-type)
-	 (service gnome-desktop-service-type)
+	 ;; (service gnome-desktop-service-type)
          ;; To configure OpenSSH, pass an 'openssh-configuration'
          ;; record as a second argument to 'service' below.
          (service openssh-service-type)

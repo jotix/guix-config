@@ -33,6 +33,7 @@
 	     (gnu packages xfce)
 	     (gnu packages networking)
 	     (nongnu packages mozilla)
+	     (nongnu packages game-client)
 	     (jtx/fonts))
 
 (define %jtx/emacs-packages
@@ -76,7 +77,7 @@
    emacs-cfrs))
 
 (define %jtx/bashrc "
-source /gnu/store/8d3hz2ydk1p69wh4glb7p5s29awpbp8s-liquidprompt-2.1.2/share/liquidprompt/liquidprompt
+source /gnu/store/krf43gjpnrw05vrkaqa6c3h56rqwzjnh-liquidprompt-2.1.2/share/liquidprompt/liquidprompt
 #source /gnu/store/dzn7mlkkxwjpl6jj2f6lrk4bx2fji0nc-liquidprompt-2.1.2/share/liquidprompt/themes/powerline/powerline.theme
 neofetch
 ")
@@ -105,7 +106,8 @@ neofetch
 	   font-tamzen
 	   font-hack
 	   font-powerline
-	   blueman)
+	   blueman
+	   steam)
 	  %jtx/emacs-packages))
 
   ;; Below is the list of Home services.  To search for available
