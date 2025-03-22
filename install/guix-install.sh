@@ -30,36 +30,36 @@ echo "Host: $HOST"
 echo
 
 # make a new GPT partition table
-sudo parted $DISK mklabel gpt
+parted $DISK mklabel gpt
 
 # make EFI & btrfs partitions
-sudo parted $DISK mkpart GUIX-EFI fat32 1M 100M
-sudo parted $DISK mkpart guix btrfs 100M 100%
+parted $DISK mkpart GUIX-EFI fat32 1M 100M
+parted $DISK mkpart guix btrfs 100M 100%
 
 # set esp flag in EFI partition
-sudo parted $DISK set 1 esp on
+parted $DISK set 1 esp on
 
 # make the filesystems
-sudo mkfs.vfat -F32 -n GUIX-EFI /dev/disk/by-partlabel/GUIX-EFI
-sudo mkfs.btrfs -L guix /dev/disk/by-partlabel/guix -f
+mkfs.vfat -F32 -n GUIX-EFI /dev/disk/by-partlabel/GUIX-EFI
+mkfs.btrfs -L guix /dev/disk/by-partlabel/guix -f
 
 # mount the disk & create the subvolumes
-sudo mount LABEL=guix /mnt
-sudo btrfs subvolume create /mnt/@
-sudo btrfs subvolume create /mnt/@gnu
-sudo btrfs subvolume create /mnt/@home
-sudo umount -R /mnt
+mount LABEL=guix /mnt
+btrfs subvolume create /mnt/@
+btrfs subvolume create /mnt/@gnu
+btrfs subvolume create /mnt/@home
+umount -R /mnt
 
 # make the directories
-sudo mount LABEL=guix /mnt -osubvol=/@
-sudo mkdir -p /mnt/home
-sudo mkdir -p /mnt/gnu
-sudo mkdir -p /mnt/boot/efi
+mount LABEL=guix /mnt -osubvol=/@
+mkdir -p /mnt/home
+mkdir -p /mnt/gnu
+mkdir -p /mnt/boot/efi
 
 # mount all in the right place
-sudo mount LABEL=guix /mnt/home -osubvol=/@home
-sudo mount LABEL=guix /mnt/gnu -osubvol=/@gnu
-sudo mount LABEL=GUIX-EFI /mnt/boot/efi
+mount LABEL=guix /mnt/home -osubvol=/@home
+mount LABEL=guix /mnt/gnu -osubvol=/@gnu
+mount LABEL=GUIX-EFI /mnt/boot/efi
 
 ### get the config files
 wget https://raw.githubusercontent.com/jotix/guix-config/refs/heads/main/system-config.scm
@@ -68,5 +68,5 @@ wget https://raw.githubusercontent.com/jotix/guix-config/refs/heads/main/install
 
 ### installation
 herd start cow-store /mnt
-sudo guix archive --authorize < signing-key.pub
+guix archive --authorize < signing-key.pub
 guix time-machine -C ./channels.scm -- system init ./system-config.scm /mnt --substitute-urls='https://ci.guix.gnu.org https://bordeaux.guix.gnu.org https://substitutes.nonguix.org'
