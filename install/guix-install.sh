@@ -17,11 +17,6 @@ if [[ $HOST != "jtx" ]] && [[ $HOST != "ffm" ]]; then
 fi
 HOST=$HOST-guix
 
-if [[ $HOSTNAME != "gnu" ]]; then
-    echo "Executing in testing mode..."
-    exit
-fi
-
 echo 
 read -p "The disk $DISK will be complete deleted. Continue? (yes/no): " CONTINUE
 if [[ $CONTINUE != "yes" ]]; then
